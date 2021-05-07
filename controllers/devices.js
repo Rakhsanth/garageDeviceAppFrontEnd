@@ -41,7 +41,12 @@ auth:           logged in users
 const createDevice = asyncHandler(async (request, response, next) => {
     request.body.user = request.user.id;
 
-    // if file is being
+    // if already 10 devices, prevent adding new devices
+    const count = await Device.countDocuments({});
+
+    if (count >= 10) {
+        return next(new ErrorResponse('Cannot add more than 10 devices', 400));
+    }
 
     const device = await Device.create(request.body);
 
@@ -184,16 +189,7 @@ const imageUpload = asyncHandler(async (request, response, next) => {
         return next(new ErrorResponse('please upload an image file', 400));
     }
 
-    // if (device.image !== null) {
-    //     // if already has an image delete that from GCP
-    //     console.log('has an image already'.yellow);
-    //     let filename = profile.picture.split('/');
-    //     filename = filename[filename.length - 1];
-    //     console.log(`deleting existing image ${filename}`);
-    //     deleteImageFromBucket(filename);
-    //     console.log('Previous image deleted successfully'.green);
-    // }
-
+    // get the image file in binary format
     const uploadedFile = request.files.file;
 
     const fileLimit = process.env.IMAGE_SIZE * megabytes;
@@ -206,6 +202,7 @@ const imageUpload = asyncHandler(async (request, response, next) => {
         );
     }
 
+    // give image a unique name
     uploadedFile.name = `deviceImage_${device._id}_${
         path.parse(uploadedFile.name).ext
     }`;
