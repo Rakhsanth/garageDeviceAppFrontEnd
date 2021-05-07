@@ -1,0 +1,35 @@
+{
+    "name": "garage_backend",
+    "version": "1.0.0",
+    "description": "Backend node and express API for the sample garage web app",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "nodemon server.js",
+        "start": "node server.js"
+    },
+    "author": "Rakhsanth",
+    "license": "ISC",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "colors": "^1.4.0",
+        "cookie-parser": "^1.4.5",
+        "cors": "^2.8.5",
+        "dotenv": "^8.4.0",
+        "errorhandler": "^1.5.1",
+        "express": "^4.17.1",
+        "express-fileupload": "^1.2.1",
+        "express-mongo-sanitize": "^2.0.2",
+        "express-rate-limit": "^5.2.6",
+        "helmet": "^4.6.0",
+        "hpp": "^0.2.3",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.12.7",
+        "morgan": "^1.10.0",
+        "socket.io": "^4.0.1",
+        "xss-clean": "^0.1.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    }
+}
