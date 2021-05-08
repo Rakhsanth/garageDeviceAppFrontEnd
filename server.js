@@ -43,7 +43,10 @@ app.use(express.json());
 app.use(
     cors({
         credentials: true,
-        origin: ['http://localhost:3000', 'https://mockdemy.vercel.app'],
+        origin: [
+            'http://localhost:3000',
+            'https://garage-device-app-ui.vercel.app',
+        ],
     })
 );
 
